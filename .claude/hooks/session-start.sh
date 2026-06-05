@@ -13,6 +13,7 @@ fi
 repos=(
   "mattpocock/skills"
   "forrestchang/andrej-karpathy-skills"
+  "anthropics/skills"
 )
 
 # Verbose installer output goes to a log so it does not flood session context.
