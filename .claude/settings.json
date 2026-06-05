@@ -10,5 +10,6 @@
         ]
       }
     ]
-  }
+  },
+  "enabledMcpjsonServers": ["context-mode"]
 }
