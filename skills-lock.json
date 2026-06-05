@@ -67,6 +67,12 @@
       "skillPath": "skills/using-superpowers/SKILL.md",
       "computedHash": "de10fd3ff46d797acc92b9df6b3ea456a5cd1d095b73c90bc921e83cce4c5bb9"
     },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/composition-patterns/SKILL.md",
+      "computedHash": "f98931159fa9c7fed043bcd18a891a46dcf89ababa38df13a4c5b7b30dc0ce07"
+    },
     "verification-before-completion": {
       "source": "obra/superpowers",
       "sourceType": "github",
