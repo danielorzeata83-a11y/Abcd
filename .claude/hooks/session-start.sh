@@ -26,3 +26,23 @@ for repo in "${repos[@]}"; do
     echo "session-start: WARNING $repo install failed; continuing (log: $log)"
   fi
 done
+
+# mindrally/skills: 240+ Cursor-rules guideline skills (pure SKILL.md, no manifest),
+# so the `skills` tool above cannot ingest it. Clone and copy each skill into the
+# global skills dir. No-clobber: never overwrite a skill from the curated repos above.
+mr_tmp="$(mktemp -d)"
+if git clone --depth 1 https://github.com/mindrally/skills.git "$mr_tmp/repo" >>"$log" 2>&1; then
+  dest="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills"
+  mkdir -p "$dest"
+  copied=0
+  for d in "$mr_tmp"/repo/*/; do
+    name="$(basename "$d")"
+    [ -f "$d/SKILL.md" ] || continue
+    if [ -e "$dest/$name" ]; then continue; fi
+    if cp -r "$d" "$dest/$name"; then copied=$((copied + 1)); fi
+  done
+  echo "session-start: installed mindrally/skills ($copied skills, no-clobber; log: $log)"
+else
+  echo "session-start: WARNING mindrally/skills clone failed; continuing (log: $log)"
+fi
+rm -rf "$mr_tmp"
